@@ -17,15 +17,16 @@ class State(@BeanProperty var player: Player, @BeanProperty var board: Board, @B
   }
 
   def writeToFile() {
-    var writer: PrintWriter = _
+    // var writer: PrintWriter = _
     try {
-      writer = new PrintWriter("output.txt", "UTF-8")
+      var writer = new PrintWriter("output.txt", "UTF-8")
       writer.println(this)
+      writer.close();
     } catch {
       case e@(_: FileNotFoundException | _: UnsupportedEncodingException) => e.printStackTrace()
-    } finally {
-      writer.close();
-    }
+    } // finally {
+      // writer.close();
+    // }
   }
 
   override def toString(): String = {
