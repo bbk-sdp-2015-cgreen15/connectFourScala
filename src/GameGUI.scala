@@ -8,10 +8,13 @@ object GameGUI extends App {
          * game space. */
   // val p1 = new AI(RED, 6);
   // val p2 = new Human(YELLOW);
-  val p1 = new Dummy(RED);
-  val p2 = new Dummy(YELLOW);
+  // val p1 = new Dummy(RED);
+  // val p2 = new Dummy(YELLOW);
   // val p1 = new Human(RED);
   // val p2 = new Dummy(YELLOW);
+  
+    val p1 = new Human(RED);
+    val p2 = new Human(YELLOW);
 
   /* --------------------------------- Do not change below here. --------------------------------- */
 

@@ -24,7 +24,16 @@ class Board {
     makeMove(nextMove)
   }
 
-  def makeMove(move: Move): Unit = ???
+  def makeMove(move: Move): Unit = {
+    var filled: Boolean = false;
+    for( r <- 5.to(0, -1) ) {
+        if (getPlayer(r, move.column) == null && !filled)
+        {
+          board(r)(move.column) = move.player
+          filled = true
+        }
+    }
+  }
 
   def getTile(row: Int, col: Int): Player = board(row)(col)
 
