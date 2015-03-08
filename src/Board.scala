@@ -37,7 +37,29 @@ class Board {
 
   def getTile(row: Int, col: Int): Player = board(row)(col)
 
-  def getPossibleMoves(p: Player): Array[Move] = ???
+  def getPossibleMoves(p: Player): Array[Move] = {
+    
+    var possibleMoves = new Array[Move](0)
+    var filled: Boolean = false;
+    
+    
+    for (c <- 0.to(6) ) {
+      if(getPlayer(0,c) == null) 
+      {
+        possibleMoves +:= new Move(p,c)
+        println("Added to array at poss " + c)
+        
+     }
+      
+      
+      
+    }
+    
+    
+    
+    possibleMoves
+    
+  }
 
   override def toString(): String = ???
 

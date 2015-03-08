@@ -71,9 +71,14 @@ class Game(private var activePlayer: Solver, private var player2: Solver) {
     }
   }
 
+  def getPossibleMoves(): Unit = {
+    board.getPossibleMoves(RED)
+  }
+  
+  
   def isGameOver(): Boolean = {
     winner = board.hasConnectFour()
-
+    
     if (winner.isDefined) return true
     var r = 0
     while (r < Board.NUM_ROWS) {
@@ -98,5 +103,6 @@ object Game extends App {
 
   def apply(p1: Solver, p2: Solver) =
     new Game(p1, p2)
+
 }
 

@@ -13,12 +13,17 @@ object GameGUI extends App {
   // val p1 = new Human(RED);
   // val p2 = new Dummy(YELLOW);
   
-    val p1 = new Human(RED);
-    val p2 = new Human(YELLOW);
+  val p1 = new Human(RED);
+  val p2 = new Human(YELLOW);
 
+  
+  
+  // val p1 = new Dummy(RED);
+  // val p2 = new Dummy(YELLOW);
   /* --------------------------------- Do not change below here. --------------------------------- */
 
   val game = new Game(p1, p2);
   game.setGUI(new GUI(game, Board.NUM_COLS, Board.NUM_ROWS));
   game.runGame();
+  game.getPossibleMoves()
 }
