@@ -14,8 +14,32 @@ class State(@BeanProperty var player: Player, @BeanProperty var board: Board, @B
   var value: Int = 0
 
   def initializeChildren() {
-  }
+    
+    // Call GetPossibleMoves within here 
+    
+    println("Called initializeChildren ")
+    // TODO - refactor with Case Statement 
+    var opponent: Player = RED
+    if (player == RED) {
+      opponent = YELLOW
+    }
 
+    val arrayOfMoves: Array[Move] = board.getPossibleMoves(opponent)
+    val arrayOfStates: Array[State] = arrayOfMoves.map(move => makeState(opponent, move))
+    
+  }
+  
+  def makeBoard(move: Move): Board = {
+    new Board(board, move)
+  }
+  
+  def makeState  (player: Player, move: Move): State = {
+ 
+    println("spawned new state with move  " + move.player + " col " + move.column)
+    val b = makeBoard(move)
+    new State(player, b, move)
+  }
+  
   def writeToFile() {
     // var writer: PrintWriter = _
     try {

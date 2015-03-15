@@ -23,6 +23,10 @@ class Game(private var activePlayer: Solver, private var player2: Solver) {
   def columnClicked(col: Int) {
     if (activePlayer.isInstanceOf[Human]) {
       activePlayer.asInstanceOf[Human].columnClicked(col)
+      
+      
+      
+      
     }
   }
 
@@ -63,11 +67,18 @@ class Game(private var activePlayer: Solver, private var player2: Solver) {
     if (gui == null) {
       if (winner.isDefined) {
         println(winner + " won the game!!!")
+        
+        
+        
       } else {
         println("Tie game!")
       }
     } else {
       gui.notifyGameOver(winner.get)
+      
+        
+        val state = new State(winner.get, board, new Move(winner.get, 0))
+        state.initializeChildren()
     }
   }
 

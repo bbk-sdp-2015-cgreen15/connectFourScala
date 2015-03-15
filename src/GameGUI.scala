@@ -25,5 +25,7 @@ object GameGUI extends App {
   val game = new Game(p1, p2);
   game.setGUI(new GUI(game, Board.NUM_COLS, Board.NUM_ROWS));
   game.runGame();
-  game.getPossibleMoves()
+  
+  // game.getPossibleMoves()
+
 }
