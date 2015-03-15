@@ -30,9 +30,32 @@ class AI(private var player: Player, private var depth: Int) extends Solver {
   }
 }
 
+
+
+
 object AI {
 
-  def createGameTree(s: State, d: Int) = ???
+  def createGameTree(s: State, d: Int): Unit = {
+    
+    
+    
+    
+    
+    if (d!=0) 
+      {
+        println ("In createGameTree Depth is " + d.toString)
+         val stateList: Array[State] = s.initializeChildren()
+         // 
+         stateList.map(state => AI.createGameTree(state, d-1))
+         // AI.createGameTree(s,d-1)
+         
+      
+      }
+      else
+        println("we're at the bottom")
+    
+    
+  }
 
   def minimax(ai: AI, s: State) {
     ai.minimax(s)

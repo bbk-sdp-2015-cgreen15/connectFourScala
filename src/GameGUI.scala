@@ -26,6 +26,8 @@ object GameGUI extends App {
   game.setGUI(new GUI(game, Board.NUM_COLS, Board.NUM_ROWS));
   game.runGame();
   
+  
+  
   // game.getPossibleMoves()
 
 }

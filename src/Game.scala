@@ -76,9 +76,8 @@ class Game(private var activePlayer: Solver, private var player2: Solver) {
     } else {
       gui.notifyGameOver(winner.get)
       
-        
         val state = new State(winner.get, board, new Move(winner.get, 0))
-        state.initializeChildren()
+        AI.createGameTree(state, 4)
     }
   }
 

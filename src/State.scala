@@ -13,7 +13,7 @@ class State(@BeanProperty var player: Player, @BeanProperty var board: Board, @B
   @BeanProperty
   var value: Int = 0
 
-  def initializeChildren() {
+  def initializeChildren() : Array[State] = {
     
     // Call GetPossibleMoves within here 
     
@@ -26,7 +26,7 @@ class State(@BeanProperty var player: Player, @BeanProperty var board: Board, @B
 
     val arrayOfMoves: Array[Move] = board.getPossibleMoves(opponent)
     val arrayOfStates: Array[State] = arrayOfMoves.map(move => makeState(opponent, move))
-    
+    arrayOfStates
   }
   
   def makeBoard(move: Move): Board = {
