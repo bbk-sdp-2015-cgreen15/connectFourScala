@@ -23,19 +23,21 @@ class Game(private var activePlayer: Solver, private var player2: Solver) {
   def columnClicked(col: Int) {
     if (activePlayer.isInstanceOf[Human]) {
       activePlayer.asInstanceOf[Human].columnClicked(col)
-      
-      
-      
-      
+
     }
   }
 
   def runGame() {
+
     while (!isGameOver) {
+      
       var moveIsSafe = false
       var nextMove: Move = null
+      
       while (!moveIsSafe) {
         val bestMoves = activePlayer.getMoves(board)
+        println(" At Best moves board is ")
+        println(board.toString())
         if (bestMoves.length == 0) {
           gui.setMsg("Game cannot continue until a Move is produced.")
           //continue
@@ -48,10 +50,12 @@ class Game(private var activePlayer: Solver, private var player2: Solver) {
           gui.setMsg("Illegal Move: Cannot place disc in full column. Try again.")
         }
       }
+
       board.makeMove(nextMove)
       if (gui == null) {
         println(nextMove)
         println(board)
+
       } else {
         gui.updateGUI(board, nextMove)
       }
@@ -64,31 +68,30 @@ class Game(private var activePlayer: Solver, private var player2: Solver) {
         case e: InterruptedException => e.printStackTrace()
       }
     }
+
     if (gui == null) {
       if (winner.isDefined) {
         println(winner + " won the game!!!")
-        
-        
-        
+
       } else {
         println("Tie game!")
       }
     } else {
+      
       gui.notifyGameOver(winner.get)
       
-        val state = new State(winner.get, board, new Move(winner.get, 0))
-        AI.createGameTree(state, 4)
+      // val state = new State(winner.get, board, new Move(winner.get, 0))
+      // AI.createGameTree(state, 4 /* depth */)
     }
   }
 
   def getPossibleMoves(): Unit = {
     board.getPossibleMoves(RED)
   }
-  
-  
+
   def isGameOver(): Boolean = {
     winner = board.hasConnectFour()
-    
+
     if (winner.isDefined) return true
     var r = 0
     while (r < Board.NUM_ROWS) {

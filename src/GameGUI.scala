@@ -13,13 +13,13 @@ object GameGUI extends App {
   // val p1 = new Human(RED);
   // val p2 = new Dummy(YELLOW);
   
-  val p1 = new Human(RED);
-  val p2 = new Human(YELLOW);
+  // val p1 = new Human(RED);
+  // val p2 = new Human(YELLOW);
 
   
   
-  // val p1 = new Dummy(RED);
-  // val p2 = new Dummy(YELLOW);
+  val p1 = new Human(RED);
+  val p2 = new AI(YELLOW, 6);
   /* --------------------------------- Do not change below here. --------------------------------- */
 
   val game = new Game(p1, p2);

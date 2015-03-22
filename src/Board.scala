@@ -7,7 +7,14 @@ class Board {
   private val deltas = Array(Array(1, 0), Array(0, 1), Array(-1, 1), Array(1, 1))
 
   private val board = Array.ofDim[Player](Board.NUM_ROWS, Board.NUM_COLS)
-
+  
+  var move: Move = null
+  private var lastCol: Int = 0
+  
+  def getLastCol : Int = {
+    lastCol
+  }
+  
   def this(b: Board) {
     this()
     for (r <- 0 until Board.NUM_ROWS; c <- 0 until Board.NUM_COLS)
@@ -21,47 +28,44 @@ class Board {
 
   def this(b: Board, nextMove: Move) {
     this(b)
+    this.move = nextMove
     makeMove(nextMove)
   }
 
   def makeMove(move: Move): Unit = {
+    println(" ****  In MakeMove move col is " + move.column)
+    lastCol = move.column;
     var filled: Boolean = false;
-    for( r <- 5.to(0, -1) ) {
-        if (getPlayer(r, move.column) == null && !filled)
-        {
-          board(r)(move.column) = move.player
-          filled = true
-        }
+    for (r <- 5.to(0, -1)) {
+      if (getPlayer(r, move.column) == null && !filled) {
+        board(r)(move.column) = move.player
+        filled = true
+      }
     }
   }
 
   def getTile(row: Int, col: Int): Player = board(row)(col)
 
   def getPossibleMoves(p: Player): Array[Move] = {
-    
+
     var possibleMoves = new Array[Move](0)
     var filled: Boolean = false;
-    
-    
-    for (c <- 0.to(6) ) {
-      if(getPlayer(0,c) == null) 
-      {
-        possibleMoves +:= new Move(p,c)
+
+    for (c <- 0.to(6)) {
+      if (getPlayer(0, c) == null) {
+        possibleMoves +:= new Move(p, c)
         println("Added to array at poss " + c)
-        
-     }
-      
-      
-      
+
+      }
     }
-    
-    
-    
+
     possibleMoves
-    
+
   }
 
-  override def toString(): String = ???
+  override def toString(): String = {
+    toString("")
+  }
 
   def toString(prefix: String): String = {
     val str = new StringBuilder("")

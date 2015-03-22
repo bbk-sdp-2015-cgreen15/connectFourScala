@@ -11,3 +11,9 @@ final case object RED extends Player {
 final case object YELLOW extends Player {
   def opponent = RED
 }
+
+object Player {
+  def getOther(p: Player): Player = {
+    if (p == RED) YELLOW else RED
+  }
+}

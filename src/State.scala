@@ -1,10 +1,10 @@
-import java.io.{FileNotFoundException, PrintWriter, UnsupportedEncodingException}
-
+import java.io.{ FileNotFoundException, PrintWriter, UnsupportedEncodingException }
 import State.length0
-
 import scala.beans.BeanProperty
 
-class State(@BeanProperty var player: Player, @BeanProperty var board: Board, @BeanProperty var lastMove: Move)
+class State(@BeanProperty var player: Player,
+            @BeanProperty var board: Board,
+            @BeanProperty var lastMove: Move)
   extends Comparable[Any] {
 
   @BeanProperty
@@ -13,44 +13,34 @@ class State(@BeanProperty var player: Player, @BeanProperty var board: Board, @B
   @BeanProperty
   var value: Int = 0
 
-  def initializeChildren() : Array[State] = {
-    
+  def initializeChildren(): Array[State] = {
+
     // Call GetPossibleMoves within here 
     
-    println("Called initializeChildren ")
-    // TODO - refactor with Case Statement 
-    var opponent: Player = RED
-    if (player == RED) {
-      opponent = YELLOW
-    }
-
+    val opponent: Player = Player.getOther(player)
     val arrayOfMoves: Array[Move] = board.getPossibleMoves(opponent)
     val arrayOfStates: Array[State] = arrayOfMoves.map(move => makeState(opponent, move))
+    
     arrayOfStates
   }
-  
+
   def makeBoard(move: Move): Board = {
     new Board(board, move)
   }
-  
-  def makeState  (player: Player, move: Move): State = {
- 
-    println("spawned new state with move  " + move.player + " col " + move.column)
+
+  def makeState(player: Player, move: Move): State = {
     val b = makeBoard(move)
     new State(player, b, move)
   }
-  
-  def writeToFile() {
-    // var writer: PrintWriter = _
+
+  def writeToFile(): Unit = {
     try {
-       var writer = new PrintWriter("output.txt", "UTF-8")
+      var writer = new PrintWriter("output.txt", "UTF-8")
       writer.println(this)
       writer.close
     } catch {
-      case e@(_: FileNotFoundException | _: UnsupportedEncodingException) => e.printStackTrace()
-    } // finally {
-      // writer.close();
-    // }
+      case e @ (_: FileNotFoundException | _: UnsupportedEncodingException) => e.printStackTrace()
+    }
   }
 
   override def toString(): String = {
@@ -58,7 +48,9 @@ class State(@BeanProperty var player: Player, @BeanProperty var board: Board, @B
     toStringHelper(0, "")
   }
 
-  override def compareTo(o: Any): Int = ???
+  override def compareTo(o: Any): Int = {
+    0
+  }
 
   private def toStringHelper(d: Int, ind: String): String = {
     var str = ind + player + " to play\n"
