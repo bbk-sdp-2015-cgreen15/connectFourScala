@@ -12,16 +12,15 @@ class State(@BeanProperty var player: Player,
 
   @BeanProperty
   var value: Int = 0
+  
+  @BeanProperty 
+  var bestCol: Int = -1
 
-  def initializeChildren(): Array[State] = {
-
-    // Call GetPossibleMoves within here 
+  def initializeChildren(): Unit = {
     
     val opponent: Player = Player.getOther(player)
     val arrayOfMoves: Array[Move] = board.getPossibleMoves(opponent)
-    val arrayOfStates: Array[State] = arrayOfMoves.map(move => makeState(opponent, move))
-    
-    arrayOfStates
+    children = arrayOfMoves.map(move => makeState(opponent, move))
   }
 
   def makeBoard(move: Move): Board = {
@@ -44,7 +43,6 @@ class State(@BeanProperty var player: Player,
   }
 
   override def toString(): String = {
-    println("State.toString printing")
     toStringHelper(0, "")
   }
 

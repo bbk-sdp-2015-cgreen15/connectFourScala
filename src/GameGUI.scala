@@ -6,28 +6,16 @@ object GameGUI extends App {
          * a player parameter; the AI constructor has a player and depth
          * as parameters, with the a depth used to recurse when searching the
          * game space. */
-  // val p1 = new AI(RED, 6);
-  // val p2 = new Human(YELLOW);
-  // val p1 = new Dummy(RED);
-  // val p2 = new Dummy(YELLOW);
-  // val p1 = new Human(RED);
-  // val p2 = new Dummy(YELLOW);
-  
-  // val p1 = new Human(RED);
-  // val p2 = new Human(YELLOW);
-
-  
+  // val p1 = new AI(RED, 6)
+  // val p2 = new Human(YELLOW)
+  // val p1 = new Dummy(RED)
+  // val p2 = new Dummy(YELLOW)
   
   val p1 = new Human(RED);
-  val p2 = new AI(YELLOW, 6);
+  val p2 = new AI(YELLOW, 4);
   /* --------------------------------- Do not change below here. --------------------------------- */
 
   val game = new Game(p1, p2);
   game.setGUI(new GUI(game, Board.NUM_COLS, Board.NUM_ROWS));
   game.runGame();
-  
-  
-  
-  // game.getPossibleMoves()
-
 }

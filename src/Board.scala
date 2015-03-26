@@ -33,7 +33,6 @@ class Board {
   }
 
   def makeMove(move: Move): Unit = {
-    println(" ****  In MakeMove move col is " + move.column)
     lastCol = move.column;
     var filled: Boolean = false;
     for (r <- 5.to(0, -1)) {
@@ -54,13 +53,9 @@ class Board {
     for (c <- 0.to(6)) {
       if (getPlayer(0, c) == null) {
         possibleMoves +:= new Move(p, c)
-        println("Added to array at poss " + c)
-
       }
     }
-
     possibleMoves
-
   }
 
   override def toString(): String = {

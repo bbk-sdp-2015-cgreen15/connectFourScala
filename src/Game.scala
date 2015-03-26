@@ -36,8 +36,10 @@ class Game(private var activePlayer: Solver, private var player2: Solver) {
       
       while (!moveIsSafe) {
         val bestMoves = activePlayer.getMoves(board)
+        
         println(" At Best moves board is ")
         println(board.toString())
+        
         if (bestMoves.length == 0) {
           gui.setMsg("Game cannot continue until a Move is produced.")
           //continue
